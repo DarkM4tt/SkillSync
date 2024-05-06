@@ -1,5 +1,17 @@
 import { useState } from "react";
+import MultiSelect from "./components/MultiSelect";
 import "./App.css";
+
+const roleOptions = [
+  "Frontend",
+  "Backend",
+  "Full Stack",
+  "IOS",
+  "Flutter",
+  "React Native",
+  "Android",
+  "Swift",
+];
 
 function App() {
   const [roles, setRoles] = useState([]);
@@ -30,7 +42,38 @@ function App() {
 
   return (
     <div className="container">
-      <div className="inputs">{/* Inputs */}</div>
+      <div className="inputs">
+        <MultiSelect
+          label="Roles"
+          options={roleOptions}
+          value={roles}
+          onChange={handleRoleChange}
+        />
+        <MultiSelect
+          label="Roles"
+          options={roleOptions}
+          value={roles}
+          onChange={handleRoleChange}
+        />
+        <MultiSelect
+          label="Roles"
+          options={roleOptions}
+          value={roles}
+          onChange={handleRoleChange}
+        />
+        <MultiSelect
+          label="Roles"
+          options={roleOptions}
+          value={roles}
+          onChange={handleRoleChange}
+        />
+        <MultiSelect
+          label="Roles"
+          options={roleOptions}
+          value={roles}
+          onChange={handleRoleChange}
+        />
+      </div>
       <div className="jobs">{/* Jobs */}</div>
     </div>
   );
