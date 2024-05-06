@@ -10,7 +10,15 @@
   gap: 20px;
 }
 
-.container .jobs {
+.container .inputs .input-item {
+  width: 100%;
+}
+
+.inputs .input-item .select {
+  width: 100%;
+}
+
+.jobs {
   margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

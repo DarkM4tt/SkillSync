@@ -6,8 +6,6 @@ import {
   roleOptions,
   workCultureOptions,
 } from "./constants/options";
-import MultiSelect from "./components/MultiSelect";
-import "./App.css";
 import {
   FormControl,
   InputLabel,
@@ -15,6 +13,10 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { jobsList } from "./jobs";
+import MultiSelect from "./components/MultiSelect";
+import JobCard from "./components/JobCard";
+import "./App.css";
 
 function App() {
   const [roles, setRoles] = useState([]);
@@ -106,7 +108,11 @@ function App() {
           />
         </div>
       </div>
-      <div className="jobs">{/* Jobs */}</div>
+      <div className="jobs">
+        {jobsList?.map((job) => (
+          <JobCard key={job?.jdUid} job={job} />
+        ))}
+      </div>
     </div>
   );
 }
