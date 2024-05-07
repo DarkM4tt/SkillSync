@@ -1,3 +1,4 @@
+import { useState } from "react";
 import avatarImage from "../assets/avatar.png";
 import avatarUser from "../assets/user2.jpg";
 import "./jobCard.scss";
@@ -7,6 +8,13 @@ const getRandomNumber = () => {
 };
 
 const JobCard = ({ job }) => {
+  // State for show more button
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
   const {
     jobDetailsFromCompany,
     maxJdSalary,
@@ -17,6 +25,18 @@ const JobCard = ({ job }) => {
     companyName,
     logoUrl,
   } = job;
+
+  //To Expand Description
+  const getDescription = () => {
+    const shortenedDescription = jobDetailsFromCompany
+      .split(" ")
+      .slice(0, 31)
+      .join(" ");
+    return showFullDescription
+      ? jobDetailsFromCompany
+      : shortenedDescription + ".......";
+  };
+
   return (
     <div className="job-card">
       <div className="job-card-posted-date">
@@ -38,8 +58,13 @@ const JobCard = ({ job }) => {
         <p className="aboutUs">About us</p>
         <div
           className="job-card-description"
-          dangerouslySetInnerHTML={{ __html: jobDetailsFromCompany }}
+          dangerouslySetInnerHTML={{ __html: getDescription() }}
         />
+        {!showFullDescription && (
+          <button className="show-more-button" onClick={toggleDescription}>
+            Show More
+          </button>
+        )}
         <div className="minExp">
           <p className="min">Minimum Experience</p>
           <p className="yrs">{minExp} years</p>
