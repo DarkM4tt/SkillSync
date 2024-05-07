@@ -25,11 +25,10 @@ function App() {
 	const [minSalary, setMinSalary] = useState();
 	const [companyName, setCompanyName] = useState();
 
+	//Filters
   const filteredJobs = useMemo(() => {
     if (!jobs?.jdList) return [];
     let jobsClone = JSON.parse(JSON.stringify(jobs?.jdList));
-    
-    console.log(workCulture)
     
     if (roles.length)
       jobsClone = jobsClone.filter((v) => roles.some(role => role.toLowerCase() === v.jobRole.toLowerCase()))
@@ -41,7 +40,7 @@ function App() {
       jobsClone = jobsClone.filter((v) =>  v.companyName.toLowerCase().includes(companyName.toLowerCase()))
 
     if (minSalary)
-      jobsClone = jobsClone.filter((v) =>  parseInt(minSalary.replace('L', '').trim()) <= v.minJdSalary ?? 0)
+      jobsClone = jobsClone.filter((v) =>  parseInt(minSalary.replace('L', '').trim()) <= v.minJdSalary)
 
     if (workCulture.length)
       jobsClone = jobsClone.filter((v) =>  {
@@ -49,6 +48,23 @@ function App() {
         if (workCulture.toLowerCase() === 'on site' && v.location.toLowerCase() !== 'remote') return true
         return false
       })
+
+	//   Filter if any of the key is null
+	// jobsClone = jobsClone.filter((v) =>
+    // Object.values(v).every((value) => value !== null)
+
+	// Filter if specific keys are empty
+	jobsClone = jobsClone.filter(
+    (v) =>
+      v.companyName !== null &&
+      v.jobDetailsFromCompany !== null &&
+      v.jobRole !== null &&
+      v.location !== null &&
+      v.logoUrl !== null &&
+      v.minExp !== null &&
+      v.minJdSalary !== null &&
+      v.maxJdSalary !== null
+  );
 
     return jobsClone
   }, [companyName, experience, jobs?.jdList, minSalary, roles, workCulture])
@@ -97,6 +113,7 @@ function App() {
     setIsLoading(false);
 	}, [isLoading, jobs]);
 
+	// Infinite Scroll
 	useEffect(() => {
 		const handleScroll = () => {
 			if (document.documentElement.scrollTop + document.documentElement.clientHeight + 300 >= document.documentElement.scrollHeight) {
