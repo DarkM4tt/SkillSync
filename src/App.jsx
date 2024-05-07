@@ -93,7 +93,7 @@ function App() {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
-				limit: 10,
+				limit: 15,
 				offset: jobs?.jdList?.length ?? 0,
 			}),
 		};
@@ -220,6 +220,7 @@ function App() {
 					</FormControl>
 				</div>
 			</div>
+			{isLoading && <div className="loading">Loading.............</div>}
 			<div className="jobs">
 				{filteredJobs?.map((job, i) => (
 					<JobCard key={`${job?.jdUid}-${job.companyName}-${i}`} job={job} />
