@@ -7,6 +7,7 @@ export const roleOptions = [
   "React Native",
   "Android",
   "Swift",
+  "Tech Lead",
 ];
 
 export const noOfEmployeesOptions = [
@@ -21,10 +22,9 @@ export const noOfEmployeesOptions = [
 
 export const experienceOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-export const workCultureOptions = ["Hybrid", "Remote", "In-office"];
+export const workCultureOptions = ["Remote", "On Site"];
 
 export const minSalaryOptions = [
-  "0 L",
   "10 L",
   "20 L",
   "30 L",

@@ -32,7 +32,7 @@ const JobCard = ({ job }) => {
       </div>
       <div className="job-card-body">
         <p className="job-card-salary">
-          Estimated Salary: ₹{minJdSalary} - ₹{maxJdSalary} LPA ✅
+          Estimated Salary: ₹{minJdSalary ?? 0} - ₹{maxJdSalary} LPA ✅
         </p>
         <p className="aboutCompany">About Company:</p>
         <p className="aboutUs">About us</p>
